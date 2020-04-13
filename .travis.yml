@@ -8,14 +8,14 @@ script:
   - docker run  -e CI=true 0967/react-test npm run test
 
 after_success:
-  - docker build -t localhost:3000/0967/multi-client-react  ./client-react
+  - docker build -t 0967/multi-client-react:latest  ./client-react
   - docker build -t 0967/multi-worker  ./worker
   - docker build -t 0967/multi-server  ./server
   - docker build -t 0967/multi-nginx  ./nginx
   #log into docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #push the builds
-  - docker push localhost:3000/0967/multi-client-react
+  - docker push 0967/multi-client-react:latest
   - docker push 0967/multi-worker
   - docker push 0967/multi-server
   - docker push 0967/multi-nginx
