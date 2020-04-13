@@ -26,11 +26,11 @@ services:
       - PGPORT=5432
   client:
     build:
-      context: ./client
+      context: ./client-react
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - "./client:/app"
+      - "./client-react:/app"
   worker:
     environment:
       - REDIS_HOST=redis

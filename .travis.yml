@@ -2,13 +2,13 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t safwenrabelsi/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t safwenrabelsi/react-test -f ./client-react/Dockerfile.dev ./client-react
 
 script:
   - docker run  -e CI=true safwenrabelsi/react-test npm run test
 
 after_success:
-  - docker build -t safwenrabelsi/mult-client  ./client
+  - docker build -t safwenrabelsi/mult-client  ./client-react
   - docker build -t safwenrabelsi/multi-worker  ./worker
   - docker build -t safwenrabelsi/multi-server  ./server
   - docker build -t safwenrabelsi/multi-nginx  ./nginx
